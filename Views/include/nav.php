@@ -1,13 +1,13 @@
 <ul class= "nav" id = "navId">
     <li class="nav-item">
-        <a href="index.php" class="nav-link active">List Teams</a>
+        <a href="index.php" class="nav-link active">List Users</a>
     </li>
 
     <li class="nav-item">
-        <a href="insert.php" class="nav-link active">Add Team</a>
+        <a href="View/AddTeamFormView.php" class="nav-link active">Add User</a>
     </li>
 
     <li class="nav-item">
-        <a href="" class="nav-link active">Update Team</a>
+        <a href="EditTeamFormView.php" class="nav-link active">Update user</a>
     </li>
 </ul>

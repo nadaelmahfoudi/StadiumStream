@@ -13,13 +13,29 @@ class TeamModel {
     }
 
     public function addTeam($name, $description, $date_creation) {
-        $sql = $this->pdo->prepare('INSERT INTO teams VALUES(null,?,?,?)');
-        $sql->execute([$name, $description, $date_creation]);
+        if(empty($name) || empty($description) || empty($date_creation)){
+            echo "Please enter your information.";
+        } else if(!preg_match('/[A-Za-z0-9]/', $name)){
+            echo "Enter a valid name!";
+        } else if(!preg_match('/[A-Za-z]/', $description)){
+            echo "Enter a valid description!";
+        } else {
+            $sql = $this->pdo->prepare('INSERT INTO teams VALUES(null,?,?,?)');
+            $sql->execute([$name, $description, $date_creation]);
+        }
     }
-
+    
     public function updateTeam($id, $name, $description, $date_creation) {
+        if(empty($name) || empty($description) || empty($date_creation)){
+            echo "Please enter your information.";
+        } else if(!preg_match('/[A-Za-z0-9]/', $name)){
+            echo "Enter a valid name!";
+        } else if(!preg_match('/[A-Za-z]/', $description)){
+            echo "Enter a valid description!";
+        } else {
         $sql = $this->pdo->prepare('UPDATE teams SET name=?, description=?, date_creation=? WHERE id=?');
         return $sql->execute([$name, $description, $date_creation, $id]);
+        }
     }
 
     public function deleteTeam($id) {

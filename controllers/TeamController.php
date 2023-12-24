@@ -50,7 +50,7 @@ class TeamController {
     public function addTeam() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
             $this->teamModel->addTeam($_POST["name"], $_POST["description"], $_POST["date_creation"]);
-            header("Location: index.php");
+            header("Location: index.php?team_added=true");
         }
     }
 
@@ -63,7 +63,7 @@ class TeamController {
     public function updateTeam() {
         extract($_POST);
         $this->teamModel->updateTeam($id, $name, $description, $date_creation);
-        header("Location: index.php");
+        header("Location: index.php?team_updated=true");
     }
 
     public function displayDeleteConfirmation() {

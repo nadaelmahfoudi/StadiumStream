@@ -24,5 +24,7 @@ ob_start();
     </div>
 </form>
 
+
 <?php $content = ob_get_clean();?>
 <?php include_once 'views/layout.php'; ?>
+

@@ -49,21 +49,32 @@ class TeamController {
 
     public function addTeam() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
-            $this->teamModel->addTeam($_POST["name"], $_POST["description"], $_POST["date_creation"]);
-            header("Location: index.php?team_added=true");
+            $result = $this->teamModel->addTeam($_POST["name"], $_POST["description"], $_POST["date_creation"]);
+            
+            if ($result === true) {
+                header("Location: index.php?team_added=true");
+            } else {
+                header("Location: index.php?error=" . urlencode($result));
+            }
         }
     }
+
 
     public function displayEditTeamForm() {
         $id = $_GET['id'];
         $team = $this->teamModel->getTeamById($id);
         require_once 'views/EditTeamFormView.php';
     }
-
+    
     public function updateTeam() {
         extract($_POST);
-        $this->teamModel->updateTeam($id, $name, $description, $date_creation);
-        header("Location: index.php?team_updated=true");
+        $result = $this->teamModel->updateTeam($id, $name, $description, $date_creation);
+        
+        if ($result === true) {
+            header("Location: index.php?team_updated=true");
+        } else {
+            header("Location: index.php?error=" . urlencode($result));
+        }
     }
 
     public function displayDeleteConfirmation() {
@@ -74,6 +85,6 @@ class TeamController {
     public function deleteTeam() {
         $id = $_GET['id'];
         $this->teamModel->deleteTeam($id);
-        header("Location: index.php");
+        header("Location: index.php?team_deleted=true");
     }
 }

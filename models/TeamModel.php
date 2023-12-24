@@ -1,4 +1,7 @@
 <?php
+namespace models;
+
+use PDO;
 
 class TeamModel {
     private $pdo;

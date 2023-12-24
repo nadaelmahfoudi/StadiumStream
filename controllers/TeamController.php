@@ -1,4 +1,7 @@
 <?php
+namespace controllers;
+
+use models\TeamModel;
 
 class TeamController {
     private $teamModel;
@@ -74,4 +77,3 @@ class TeamController {
         header("Location: index.php");
     }
 }
-

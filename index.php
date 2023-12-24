@@ -1,6 +1,7 @@
 <?php
-require_once 'TeamModal.php'; // Assurez-vous que le chemin du fichier est correct
-require_once 'TeamController.php';
+require_once 'autoloader.php';
+
+use controllers\TeamController;
 
 $teamController = new TeamController();
 $teamController->route();

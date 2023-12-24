@@ -18,15 +18,21 @@ function storeAction()
     
 }
 
-function updateAction()
+function editAction()
 {
+    
     $id = $_GET['id'];
-    $team = update($id);
+    $team = view($id);
     require_once 'views/edit.php';
+
 }
 
-function editAction(){
-    var_dump($_POST);
+function updateAction()
+{
+    extract($_POST);
+    edit($id,$name,$description,$date_creation);
+   header("Location: index.php");
+    
 }
 
 function deleteAction()

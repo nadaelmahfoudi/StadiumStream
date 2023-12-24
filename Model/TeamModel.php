@@ -18,13 +18,11 @@ function insert()
     $sql->execute([$_POST["name"],$_POST["description"],$_POST["date_creation"]]);
 }
 
-function update($id)
+function edit($id,$name,$description,$date_creation)
 {
     $pdo = connection_database();
-    $sql = $pdo->prepare('SELECT * FROM teams WHERE id= ?');
-    $sql->execute([$id]);
-    return $sql->fetch(PDO::FETCH_OBJ);
-
+    $sql = $pdo->prepare('UPDATE teams SET name =?, description=? , date_creation=? WHERE id=?');
+    return $sql->execute([$name,$description,$date_creation,$id]);
 }
 
 
@@ -34,4 +32,12 @@ function delete($id)
     $pdo = connection_database();
     $sql = $pdo->prepare('DELETE FROM teams WHERE id= ?');
     return $sql->execute([$id]);
+}
+
+function view($id)
+{
+    $pdo = connection_database();
+    $sql = $pdo->prepare('SELECT * FROM teams WHERE id = ?');
+    $sql->execute([$id]);
+    return $sql->fetch(PDO::FETCH_OBJ);
 }
